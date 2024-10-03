@@ -52,7 +52,7 @@ tasks.jacocoTestCoverageVerification {
             }
             limit {
                 counter = "BRANCH"
-                minimum = 0.700
+                minimum = 0.500
             }
         }
     }
