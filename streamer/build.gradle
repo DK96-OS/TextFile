@@ -21,6 +21,17 @@ dependencies {
     testImplementation libs.junit
 }
 
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "io.github.dk96-os.textfile"
+            artifactId = "streamer"
+            version = "0.1"
+            from components.java
+        }
+    }
+}
+
 tasks.jacocoTestReport {
     dependsOn tasks.test
     reports {
