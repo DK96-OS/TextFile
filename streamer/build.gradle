@@ -1,0 +1,59 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'jacoco'
+    id 'java-test-fixtures'
+    id 'org.jetbrains.dokka'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.sourcesJar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+dependencies {
+    testImplementation libs.junit
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "io.github.dk96-os.textfile"
+            artifactId = "streamer"
+            version = "0.1"
+            from components.java
+        }
+    }
+}
+
+tasks.jacocoTestReport {
+    dependsOn tasks.test
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoReport")
+    }
+}
+
+tasks.jacocoTestCoverageVerification {
+    dependsOn tasks.test
+    violationRules {
+        failOnViolation = true
+        rule {
+            limit {
+                counter = "INSTRUCTION"
+                minimum = 0.860
+            }
+            limit {
+                counter = "BRANCH"
+                minimum = 0.500
+            }
+        }
+    }
+}
