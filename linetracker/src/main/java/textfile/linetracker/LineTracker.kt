@@ -50,15 +50,6 @@ class LineTracker {
         lineNumber: Int
     ) : LineChange? = changes[lineNumber]
 
-    /** Clear all changes.
-     * @return True if there were any changes present.
-     */
-    fun clear(): Boolean {
-        val result = hasAnyChanges()
-        changes.clear()
-        return result
-    }
-
     /** Track a New Line.
      */
     fun newLine(
@@ -142,6 +133,15 @@ class LineTracker {
             .filter { changes[it] is ModifyLine }
     }
 
+    /** Clear all changes.
+     * @return True if there were any changes present.
+     */
+    fun clear(): Boolean {
+        val result = hasAnyChanges()
+        changes.clear()
+        return result
+    }
+
     /** Clear only New Lines from the Tracker.
      */
     fun clearNewLines() {
@@ -153,7 +153,7 @@ class LineTracker {
 
     /** Clear only Removed Lines from the Tracker.
      */
-    fun clearRemoveLines() {
+    fun clearRemovedLines() {
         changes.keyIterator()
             .asSequence()
             .filter { changes[it] is RemoveLine }
@@ -162,7 +162,7 @@ class LineTracker {
 
     /** Clear only Modified Lines from the Tracker.
      */
-    fun clearModifyLines() {
+    fun clearModifiedLines() {
         changes.keyIterator()
             .asSequence()
             .filter { changes[it] is ModifyLine }
