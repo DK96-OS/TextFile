@@ -233,16 +233,16 @@ class LineTrackerScenario1Test {
     }
 
     @Test
-    fun testClearRemoveLines_() {
-        mInstance.clearRemoveLines()
+    fun testClearRemovedLines_() {
+        mInstance.clearRemovedLines()
         //
         assertEquals(2, mInstance.countLineChanges())
         assertEquals(0, mInstance.getRemovedLineNumbers().count())
     }
 
     @Test
-    fun testClearModifyLines_() {
-        mInstance.clearModifyLines()
+    fun testClearModifiedLines_() {
+        mInstance.clearModifiedLines()
         //
         assertEquals(2, mInstance.countLineChanges())
         assertEquals(0, mInstance.getModifiedLineNumbers().count())
