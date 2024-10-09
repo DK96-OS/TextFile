@@ -18,6 +18,8 @@ tasks.sourcesJar {
 }
 
 dependencies {
+    implementation libs.androidx.collection
+
     testImplementation libs.junit
 }
 
@@ -25,9 +27,9 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId = "io.github.dk96-os.textfile"
-            artifactId = "streamer"
+            artifactId = "linetracker"
             apply from: "../artifacts.gradle"
-            version = artifactVersions.streamer
+            version = artifactVersions.linetracker
             from components.java
         }
     }

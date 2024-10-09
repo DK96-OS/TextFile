@@ -15,4 +15,5 @@ pluginManagement {
 rootProject.name = "textfile"
 include(
 	":streamer",
+	":linetracker",
 )
